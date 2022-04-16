@@ -23,6 +23,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
+import net.minecraftforge.client.MinecraftForgeClient;
+
 
 public class TileRendererDualVertical extends TileEntitySpecialRenderer<TileEntityDualVertical>
 {
@@ -90,7 +92,7 @@ public class TileRendererDualVertical extends TileEntitySpecialRenderer<TileEnti
 
             float doorProg = MathHelper.clamp(TileEntityDualVertical.animationTime - sc.doorTime + (sc.doorOpen && sc.doorTime < TileEntityShellStorage.animationTime ? -partialTicks : !sc.doorOpen && sc.doorTime > 0 ? partialTicks : 0.0F), 0.0F, TileEntityDualVertical.animationTime) / (float)TileEntityDualVertical.animationTime;
 
-            if(BlockDualVertical.renderPass == 0)
+            if(MinecraftForgeClient.getRenderPass() == 0)
             {
                 if (!renderDestroyStage)
                     Minecraft.getMinecraft().renderEngine.bindTexture(txShellConstructor);
@@ -128,7 +130,7 @@ public class TileRendererDualVertical extends TileEntitySpecialRenderer<TileEnti
                 prog = 1.0F - prog;
             }
 
-            if(BlockDualVertical.renderPass == 0)
+            if(MinecraftForgeClient.getRenderPass() == 0)
             {
                 if(ss.playerInstance != null && ss.syncing && !renderDestroyStage)
                 {
